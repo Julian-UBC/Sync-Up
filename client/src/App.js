@@ -1,7 +1,5 @@
-import "./App.css";
-
 import { Dashboard } from "./pages/Dashboard";
-import LoginPage from "./pages/LoginPage"
+import LoginPage from "./pages/LoginPage";
 
 import {
   BrowserRouter as Router,
@@ -9,10 +7,11 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { ThemeProvider } from "@mui/system";
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider>
       <Router>
         <Routes>
           <Route exact path="/" element={<Dashboard />} />
@@ -20,7 +19,7 @@ function App() {
           <Route path="login-page" element={<LoginPage />} />
         </Routes>
       </Router>
-    </div>
+    </ThemeProvider>
   );
 }
 
