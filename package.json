@@ -1,0 +1,25 @@
+{
+  "name": "nwhacks-2023-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm run dev --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julian-UBC/nwhacks-2023.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Julian-UBC/nwhacks-2023/issues"
+  },
+  "homepage": "https://github.com/Julian-UBC/nwhacks-2023#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
