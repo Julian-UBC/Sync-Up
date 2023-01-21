@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-teal-500 {
+  background-color: #1eb2a6;
+}
+
+.bg-teal-600 {
+  background-color: #17a2b8;
+}
+
+.bg-teal {
+    background-color: #008080;
+}
+
+.bg-turqoise {
+    background-color: #30D5C8;
+}

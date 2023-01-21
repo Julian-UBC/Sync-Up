@@ -1,14 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 
-import { Dashboard } from "./main/Dashboard";
+import { Dashboard } from "./pages/Dashboard";
+import LoginPage from "./pages/LoginPage"
 
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
-  BrowserRouter,
 } from "react-router-dom";
 
 function App() {
@@ -18,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Dashboard />} />
           <Route path="*" element={<Navigate replace to="/" />} />
+          <Route path="login-page" element={<LoginPage />} />
         </Routes>
       </Router>
     </div>
