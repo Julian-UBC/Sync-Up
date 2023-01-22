@@ -1,32 +1,40 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
-import LandingImg from "../../assets/studygroup.jpg";
+import { StyledEngineProvider } from "@mui/material/styles";
+import { Button } from "@mui/material";
 
-const useStyles = makeStyles({
-  bgImage: {
-    backgroundImage: `url(${LandingImg})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    filter: "brightness(50%)",
-  },
-});
+import "./LandingImage.css";
 
 export const LandingImage = () => {
-  const classes = useStyles();
-
   return (
-    <div className={`h-screen justify-center items-center`}>
-      <div className={`h-screen absolute w-full ${classes.bgImage}`}></div>
-      <div className="relative flex justify-center items-center h-full">
-        <div className="w-full mt-1/10">
-          <img src="" alt="Gisau Logo" className="w-1/5 m-auto"></img>
-          <h1 className="text-white my-8 font-proxima-nova text-center text-[2.5rem] font-semibold leading-12">
-            Gado-Gado Indonesian Student Association <br />
-            of UBC
-          </h1>
+    <StyledEngineProvider injectFirst>
+      <div className={`h-screen justify-center items-center`}>
+        <div className={`h-screen absolute w-full background-image`}></div>
+        <div className="relative flex justify-center items-center h-full">
+          <div className="mt-1/10">
+            <h1 className="text-main text-center text-8xl font-semibold leading-12 shadow-text">
+              Sync Up
+            </h1>
+            <p className="text-white my-8 text-center text-4xl font-semibold leading-12">
+              NO MORE PROCASTINATING <br />
+              Plan your study with your friend now!!
+            </p>
+            <div className="flex gap-4 justify-center mt-64">
+              <Button
+                variant="outlined"
+                className="border-main bg-main rounded-md text-white text-3xl py-4 px-8 hover:bg-transparent hover:border-main hover:border-4"
+              >
+                Log In
+              </Button>
+              <Button
+                variant="outlined"
+                className="border-main border-4 rounded-md text-white text-3xl py-4 px-8 hover:bg-main hover:border-main hover:border-4"
+              >
+                Sign Up
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </StyledEngineProvider>
   );
 };
