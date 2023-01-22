@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import Badge from '@mui/material/Badge';
 import { ReactComponent as StudyIcon } from '../assets/icons/studyIcon.svg';
+import { MiniCalendar } from '../components/calendar/MiniCalendar'
 
 import './Dashboard.css';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen((prevState) => !prevState);
+  }
+
   return (
     <div className="flex justify-between items-center">
       <div className="text-left text-3xl font-semibold">Dashboard</div>
-      <Badge color="secondary" variant="dot">
+      <Badge color="secondary" variant="dot" className="cursor-pointer" onClick={handleClick}>
         <NotificationsActiveIcon />
       </Badge>
+      <div className={`${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0'} origin-top-right transform ease-in-out duration-[.4s] absolute min-h-[200px] right-[80px] top-[90px] w-[300px] bg-white rounded-xl z-50 p-4 flex flex-col justify-center items-center`}>
+        <p className="text-gray">No Notifications</p>
+      </div>
     </div>
   );
 };
@@ -40,8 +50,9 @@ export const Dashboard = () => {
       <Welcome user="Julian Widjaja" />
       <div className="flex w-full h-full gap-4">
         {/* Calendar */}
-        <div className="w-full h-full bg-white rounded-xl shadow-sm px-6 py-4 flex flex-col items-start gap-2">
+        <div className="w-full h-full bg-white rounded-xl shadow-sm px-6 py-4 flex flex-col items-start gap-2 relative">
           <h2 className="font-semibold text-gray">Calendar</h2>
+          <div className="w-full h-full overflow-scroll"><MiniCalendar /></div>
         </div>
 
         <div className="flex flex-col w-[40%] h-full gap-4">
@@ -50,7 +61,7 @@ export const Dashboard = () => {
             <h3 className="font-extrabold text-5xl">596</h3>
           </div>
           <div className="w-full h-full bg-light-green rounded-xl shadow-sm px-6 py-4 relative flex justify-center">
-            <div class="progress scale-[2.1] origin-top">
+            <div class="progress scale-[2.1] origin-top max-h-[90px] overflow-hidden">
               <div class="barOverflow">
                 <div class="bar rotate-[205deg]"></div>
               </div>
@@ -60,7 +71,6 @@ export const Dashboard = () => {
               <h2 className="font-bold text-5xl">91%</h2>
               <p className="text-left text-sm">of successful meeting schedule</p>
             </div>
-
           </div>
         </div>
       </div>
