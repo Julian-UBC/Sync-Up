@@ -13,9 +13,9 @@ import axios from "axios"
 const theme = createTheme();
 
 const LoginPage = () => {
-    const [user, setUser] = useState(null)
+    const [, setUser] = useState(null)
     const [signUp, setSignUp] = useState(false)
-
+    
     const handleSignIn = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
