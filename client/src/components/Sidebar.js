@@ -114,7 +114,7 @@ export const Sidebar = ({ children }) => {
           </div>
         </NavLink>
       </div>
-      <main className={`${isOpen ? 'pl-[265px]' : 'pl-20'} transition-[padding] ease-in-out duration-[.4s] w-full bg-[#e9f1f1] min-h-[100vh]`}>{children}</main>
+      <main className={`${isOpen ? 'pl-[265px]' : 'pl-20'} transition-[padding] ease-in-out duration-[.4s] w-full bg-[#e9f0ef] min-h-[100vh]`}>{children}</main>
     </div>
   );
 };
