@@ -59,9 +59,8 @@ export const Sidebar = ({ children }) => {
   return (
     <div className="flex">
       <div
-        className={` ${
-          isOpen ? "w-72" : "w-20 "
-        } bg-main text-white p-5 pt-8 duration-300 fixed h-screen z-50`}
+        className={` ${isOpen ? "w-72" : "w-20 "
+          } bg-main text-white p-5 pt-8 duration-300 fixed h-screen z-50`}
         ref={domNode}
         onMouseEnter={handleMouseEnterSidebar}
       >
@@ -73,15 +72,12 @@ export const Sidebar = ({ children }) => {
         </Link>
         <div className="pt-6">
           {routes.map((item, index) => (
-            <div className="">
+            <div key={index} className="">
               <NavLink
                 to={item.path}
                 key={index}
                 className={`flex rounded-md p-2 cursor-pointer text-white hover:bg-secondary hover:text-black text-md items-center gap-x-4 
-              ${item.gap ? "mt-9" : "mt-2"} ${
-                  index === 0 && "bg-light-white"
-                } `}
-                activeClassName="active"
+              ${item.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"} ${(navData) => (navData.isActive ? "active-style" : 'none')}`}
               >
                 {item.icon}
                 <span
