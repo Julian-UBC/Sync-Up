@@ -49,14 +49,15 @@ export const Dashboard = () => {
             <h2 className="font-semibold text-gray">SyncUp Points</h2>
             <h3 className="font-extrabold text-5xl">596</h3>
           </div>
-          <div className="w-full h-full bg-white rounded-xl shadow-sm px-6 py-4 relative flex justify-center">
+          <div className="w-full h-full bg-light-green rounded-xl shadow-sm px-6 py-4 relative flex justify-center">
             <div class="progress scale-[2.1] origin-top">
               <div class="barOverflow">
-                <div class="bar"></div>
+                <div class="bar rotate-[205deg]"></div>
               </div>
             </div>
+            <div className="absolute left-1/2 translate-x-[-50%] font-semibold top-[135px] text-green text-xl">Superb!</div>
             <div className="absolute h-max w-[calc(100%-48px)] flex gap-3 left-[24px] bottom-[16px]">
-              <h2 className="font-bold text-green text-5xl">91%</h2>
+              <h2 className="font-bold text-5xl">91%</h2>
               <p className="text-left text-sm">of successful meeting schedule</p>
             </div>
 
