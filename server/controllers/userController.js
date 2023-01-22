@@ -13,13 +13,14 @@ export const getUserController = async (req, res) => {
 }
 
 export const putUserController = async (req, res) => {
-  const {uniqueId, email, schedules, friendlist} = req.body
+  const {uniqueId, email, schedules, friendlist, points} = req.body
   
   const user = new User({
     uniqueId: uniqueId,
     email: email,
     schedules: schedules,
-    friendlist: friendlist
+    friendlist: friendlist,
+    points: points,
   })
 
   try {

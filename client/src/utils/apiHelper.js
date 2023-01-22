@@ -1,14 +1,19 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 
+const isProduction = true;
+
+const url = isProduction? "https://app.netlify.com/sites/ephemeral-basbousa-2c91f4/settings/deploys" : "http://localhost:8000"
+
 const addUser = (uid, email) => {
   axios({
     method: 'PUT',
-    url: "http://localhost:8000/api/user",
+    url: `${url}/api/user`,
     timeout: 3000,
     data: {
       uniqueId: uid,
       email: email,
+      point: 500,
     },
     headers: {
       "Content-Type": "application/json",
@@ -24,17 +29,18 @@ const addUser = (uid, email) => {
 
 const getCurrentUser = () => {
   const user = getAuth().currentUser;
+  let result = null
   if (user) {
-    axios.get(`http://localhost:8000/api/user/${user.email}`)
+    axios.get(`${url}/api/user/${user.email}`)
     .then((res) => {
-      return res.data
+      result = res.data
     })
     .catch((err) => {
       console.log("getCurrentUser err: ", err)
     });
   } 
-  return null
-  
+
+  return result
 }
 
 export { addUser, getCurrentUser }
