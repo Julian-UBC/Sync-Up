@@ -1,5 +1,10 @@
 import React from "react";
+import { WebcamPage } from "./webcam/WebcamPage";
 
 export const Meeting = () => {
-  return <div>Meeting</div>;
+  return (
+    <div>
+      <WebcamPage />
+    </div>
+  );
 };
