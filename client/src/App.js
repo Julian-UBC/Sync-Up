@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
-import { WebcamPage } from "./pages/webcam/WebcamPage";
 import { Sidebar } from "./components/Sidebar";
 import { Schedule } from "./pages/Schedule";
 import { Meeting } from "./pages/Meeting";
