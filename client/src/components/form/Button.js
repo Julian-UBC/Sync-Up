@@ -4,7 +4,8 @@ export const Button = ({ muted, danger, subtle, className, disabled, onClick, ty
   let theme = 'bg-main text-white';
 
   if (muted) theme = 'bg-light-gray text-gray'
-  else if (danger) theme = 'bg-red text-white';
+  else if (danger) theme = 'bg-red text-white'
+  else if (subtle) theme = 'bg-light-green text-black'
 
   return (
     <button
