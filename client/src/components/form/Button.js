@@ -3,7 +3,7 @@ import React from 'react'
 export const Button = ({ muted, danger, subtle, className, disabled, onClick, type, children }) => {
   let theme = 'bg-main text-white';
 
-  if (muted) theme = 'bg-light-gray text-gray'
+  if (muted) theme = 'bg-white text-gray'
   else if (danger) theme = 'bg-red text-white'
   else if (subtle) theme = 'bg-light-green text-black'
 
