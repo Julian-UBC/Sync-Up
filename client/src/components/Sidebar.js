@@ -69,7 +69,7 @@ export const Sidebar = ({ children }) => {
       <div
         className={` ${
           isOpen ? "translate-x-0" : "translate-x-[-185px]"
-        } ease-in-out w-[265px] bg-main text-white h-screen p-4 pt-8 duration-[.4s] fixed sidebar`}
+        } ease-in-out w-[265px] bg-main text-white overflow-hidden h-screen p-4 pt-8 duration-[.4s] fixed sidebar`}
         ref={domNode}
         onMouseEnter={handleMouseEnterSidebar}
       >
