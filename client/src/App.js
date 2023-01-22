@@ -4,26 +4,35 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
 import { Sidebar } from "./components/Sidebar";
 import { Schedule } from "./pages/Schedule";
 import { Meeting } from "./pages/Meeting";
 import { Settings } from "./pages/Settings";
+import { useState } from "react";
+import { Landing } from "./pages/Landing";
 
-function App() {
+function App () {
+  const [isLogin, setIsLogin] = useState(false)
+
   return (
     <Router>
-      <Sidebar>
+      {!isLogin ?
         <Routes>
-          <Route exact path="/" element={<Dashboard />} />
-          <Route exact path="schedule" element={<Schedule />} />
-          <Route exact path="meeting" element={<Meeting />} />
-          <Route exact path="settings" element={<Settings />} />
-          <Route path="login-page" element={<LoginPage />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
+          <Route exact path="/" element={<Landing />} />
+          <Route exact path="login" element={<Login setIsLogin={setIsLogin}/>} />
         </Routes>
-      </Sidebar>
+        : <Sidebar>
+          <Routes>
+            <Route exact path="/" element={<Dashboard />} />
+            <Route exact path="schedule" element={<Schedule />} />
+            <Route exact path="meeting" element={<Meeting />} />
+            <Route exact path="settings" element={<Settings />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </Routes>
+        </Sidebar>
+      }
     </Router>
   );
 }

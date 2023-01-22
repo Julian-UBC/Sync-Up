@@ -8,38 +8,38 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LockOutlined } from "@mui/icons-material"
 import GoogleButton from "react-google-button";
 import { useState } from "react";
-import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-const LoginPage = () => {
-    const [, setUser] = useState(null)
+const Login = ({ setIsLogin }) => {
     const [signUp, setSignUp] = useState(false)
-    
-    const handleSignIn = async (event) => {
+    const navigate = useNavigate()
+
+    const handleSignIn = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
         const password = data.get("password")
         signInWithFirebase(email, password)
-        const res = await axios.get(`http://localhost:8000/api/user/${email}`);
-        setUser(res.data)
+        setIsLogin(true)
+        navigate("/")
     }
 
-    const handleSignUp = async (event) => {
+    const handleSignUp = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
         const password = data.get("password")
         signUpWithFirebase(email, password)
+        setIsLogin(true)
+        navigate("/")
     }
 
-    const loginWithGoogle = async () => {
-        const { user } = await signInWithGooglePopUp();
-
-        const res = await axios.get(`http://localhost:8000/api/user/${user.email}`);
-        setUser(res.data)
-
+    const loginWithGoogle = () => {
+        signInWithGooglePopUp();
+        setIsLogin(true)
+        navigate("/")
     }
 
     return (
@@ -107,35 +107,35 @@ const LoginPage = () => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 1.5, height: "50px"}}
+                            sx={{ mt: 1.5, height: "50px" }}
                         >
                             {signUp ? "Sign Up" : "Sign In"}
                         </Button>
                         {signUp ? null : <>
-                        <Box className="flex justify-center my-1">OR</Box>
-                        <GoogleButton onClick={loginWithGoogle} style={{width: "100%"}} />
+                            <Box className="flex justify-center my-1">OR</Box>
+                            <GoogleButton onClick={loginWithGoogle} style={{ width: "100%" }} />
                         </>
-                            }
-                                <Grid container className="mt-3">
-                                    <Grid item xs>
-                                        {signUp ? null :
-                                            <Link href="#" variant="body2">
-                                                Forgot password?
-                                            </Link>
-                                        }
-                                    </Grid>
-                                    <Grid item>
-                                        <Link href="#" onClick={() => setSignUp(signUp ? false : true)} variant="body2">
-                                            {signUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
-                            </Box>
+                        }
+                        <Grid container className="mt-3">
+                            <Grid item xs>
+                                {signUp ? null :
+                                    <Link href="#" variant="body2">
+                                        Forgot password?
+                                    </Link>
+                                }
+                            </Grid>
+                            <Grid item>
+                                <Link href="#" onClick={() => setSignUp(signUp ? false : true)} variant="body2">
+                                    {signUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
             </Container>
         </ThemeProvider>
     );
 };
 
-export default LoginPage;
+export { Login };
 
