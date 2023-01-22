@@ -1,3 +1,19 @@
 .active {
-  color: #000;
+  color: #1be7d6;
+}
+
+.sidebar {
+  --y-pos: 0;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 40px;
+  background-color: #1be7d6;
+  top: -40px;
+  right: 0;
+  transform: translateY(var(--y-pos));
+  transition: transform .3s ease-in-out, width .3s ease-in-out;
 }
