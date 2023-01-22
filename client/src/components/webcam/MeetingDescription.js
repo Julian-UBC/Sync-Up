@@ -7,7 +7,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 
 const Description = ({ title, description }) => {
   return (
-    <div className="rounded-xl bg-[#edf0f5] w-full h-max p-6 flex flex-col gap-2">
+    <div className="rounded-xl bg-white w-full h-max p-6 flex flex-col gap-2">
       <h2 className="meeting-title text-lg font-semibold text-left">{title}</h2>
       <p className="meeting-description text-left text-sm">{description}</p>
     </div>
@@ -29,7 +29,7 @@ const GroupChat = () => {
   }
   
   return (
-    <div className="rounded-xl bg-[#edf0f5] w-full h-full relative">
+    <div className="rounded-xl bg-white w-full h-full relative">
       {/* Header */}
       <div className="flex justify-between items-center border-slate-300 border-b-[1px] p-6">
         <h2 className="font-medium text-lg">Group Chat</h2>
@@ -51,15 +51,13 @@ const GroupChat = () => {
         </div>
       </div>
       {/* Helper Box/Button */}
-      {showHelper ?
-        <HelperBox setShowHelper={setShowHelper}/> :
-        <Button className="w-[40px] h-[40px] absolute right-[25px] bottom-[80px]" subtle onClick={handleHelperButton}>
+        <HelperBox setShowHelper={setShowHelper} showHelper={showHelper} /> 
+        <Button className={`${showHelper ? 'opacity-0' : 'opacity-100'} transform-opacity duration-[.4s] ease-in-out w-[40px] h-[40px] absolute right-[25px] bottom-[80px]`} subtle onClick={handleHelperButton}>
           <MoreHoriz fontSize="large" />
         </Button>
-      }
       {/* Chat Input */}
-      <div className="absolute bottom-[16px] bg-white w-[calc(100%-32px)] left-[16px] rounded-xl py-4 px-5 flex justify-start">
-        <input className="outline-none w-[calc(100%-36px)] text-sm" type="text" value={value} onChange={handleChange} placeholder="Write a message here..." />
+      <div className="absolute bottom-[16px] bg-[#edf0f5] w-[calc(100%-32px)] left-[16px] rounded-xl py-4 px-5 flex justify-start">
+        <input className="outline-none bg-[#edf0f5] w-[calc(100%-36px)] text-sm" type="text" value={value} onChange={handleChange} placeholder="Write a message here..." />
         <Button className="w-[40px] h-[40px] absolute right-[8px] top-[8px]">
           <Send className="rotate-[-45deg] translate-x-[1px] -translate-y-[1.5px]" fontSize="small" />
         </Button>
@@ -77,12 +75,12 @@ export const MeetingDescription = ({ title, description }) => {
   );
 };
 
-const HelperBox = ({ setShowHelper }) => {
+const HelperBox = ({ setShowHelper, showHelper }) => {
   const ref = useDetectClickOutside({ onTriggered: (e) => {
     (e.target.matches("svg")) ? setShowHelper(true) : setShowHelper(false)}})
 
   return (
-    <Box className="w-2/3 absolute right-5 bottom-24 bg-light-green" ref={ref}>
+    <Box className={`${showHelper ? 'scale-100 opacity-100' : 'scale-0 opacity-0'} origin-bottom-right rounded-xl transform duration-[.4s] ease-in-out w-2/3 absolute right-5 bottom-[80px] bg-light-green`} ref={ref}>
       <MenuList>
         <MenuItem>
           <ListItemIcon>
