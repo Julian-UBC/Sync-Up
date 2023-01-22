@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aldabil/react-scheduler": "^2.6.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
@@ -19,6 +20,7 @@
     "react-hook-form": "^7.42.1",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+    "react-webcam": "^7.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
