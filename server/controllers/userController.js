@@ -1,17 +1,15 @@
-import User from "../models/User";
+import User from "../models/User.js";
 
 export const getUserController = async (req, res) => {
-  const { email } = req.body
-  
+  const { email } = req.params
   // Find user with the given email
   let existingUser;
   try {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
-    res.send(err)
+    res.send("Get User Error: ", err)
   }
-  
-  res.send("200: Get User Success!")
+  res.json(existingUser);
 }
 
 export const putUserController = async (req, res) => {

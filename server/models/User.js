@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
         location: { type: String, required: true},
         participants: [{ type: String }]
     }], 
-    friendlist: [{ type: mongoose.Types.ObjectId, ref: "User" }]
+    friendlist: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+    points: { type: BigInt64Array}
 })
 
 export default mongoose.model('User', userSchema)
