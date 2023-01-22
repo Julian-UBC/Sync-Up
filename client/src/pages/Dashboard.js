@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import Badge from '@mui/material/Badge';
 import { ReactComponent as StudyIcon } from '../assets/icons/studyIcon.svg';
+import { ReactComponent as SmileyIcon } from '../assets/icons/smileyIcon.svg';
 import { MiniCalendar } from '../components/calendar/MiniCalendar'
+
 
 import './Dashboard.css';
 
@@ -66,6 +68,7 @@ export const Dashboard = () => {
                 <div class="bar rotate-[205deg]"></div>
               </div>
             </div>
+            <SmileyIcon className="absolute left-1/2 translate-x-[-50%] top-[60px]" width={60} height={60} />
             <div className="absolute left-1/2 translate-x-[-50%] font-semibold top-[135px] text-green text-xl">Superb!</div>
             <div className="absolute h-max w-[calc(100%-48px)] flex gap-3 left-[24px] bottom-[16px]">
               <h2 className="font-bold text-5xl">91%</h2>

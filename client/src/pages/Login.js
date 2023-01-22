@@ -1,7 +1,7 @@
 import {
   signInWithGooglePopUp,
   signInWithFirebase,
-  signUpWithFirebase,
+  signUpWithFirebase
 } from "../utils/firebase";
 import {
   Box,
