@@ -35,7 +35,7 @@ export const LandingImage = () => {
             </h1>
             <p className="text-white my-8 text-center text-4xl font-semibold leading-12">
               NO MORE PROCASTINATING <br />
-              Plan your study with your friend now!!
+              Plan your study with your friends now!
             </p>
             <div className="flex gap-4 justify-center mt-64">
               <Button
