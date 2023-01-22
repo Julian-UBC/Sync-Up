@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 
 import {
   HomeOutlined,
