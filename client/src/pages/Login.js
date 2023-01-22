@@ -21,8 +21,7 @@ const Login = ({ setIsLogin }) => {
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
         const password = data.get("password")
-        signInWithFirebase(email, password)
-        setIsLogin(true)
+        signInWithFirebase(email, password, setIsLogin)
         navigate("/")
     }
 
@@ -31,14 +30,12 @@ const Login = ({ setIsLogin }) => {
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
         const password = data.get("password")
-        signUpWithFirebase(email, password)
-        setIsLogin(true)
+        signUpWithFirebase(email, password, setIsLogin)
         navigate("/")
     }
 
     const loginWithGoogle = () => {
-        signInWithGooglePopUp();
-        setIsLogin(true)
+        signInWithGooglePopUp(setIsLogin);
         navigate("/")
     }
 
