@@ -58,11 +58,13 @@ export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 
 export const signInWithFirebase = (email, password) => signInWithEmailAndPassword(auth, email, password)
 
-export const handleSignUp = (email, password) => {
+export const signUpWithFirebase = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      // ...
+    .then(() => {
+      signInWithFirebase(email, password);
+      console.log("Sign Up success")
     })
+    .catch(err => {
+      console.log("signUpWithFirebase err: ", err)
+  })
 };
