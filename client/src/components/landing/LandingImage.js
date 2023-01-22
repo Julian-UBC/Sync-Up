@@ -3,8 +3,27 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import { Button } from "@mui/material";
 
 import "./LandingImage.css";
+import { useNavigate } from "react-router-dom";
 
 export const LandingImage = () => {
+  const navigate = useNavigate();
+
+  const handleLogIn = () => {
+    navigate("login", {
+      state: {
+        isSignUp: false,
+      },
+    });
+  };
+
+  const handleSignUp = () => {
+    navigate("login", {
+      state: {
+        isSignUp: true,
+      },
+    });
+  };
+
   return (
     <StyledEngineProvider injectFirst>
       <div className={`h-screen justify-center items-center`}>
@@ -22,12 +41,14 @@ export const LandingImage = () => {
               <Button
                 variant="outlined"
                 className="border-main bg-main rounded-md text-white text-3xl py-4 px-8 hover:bg-transparent hover:border-main hover:border-4"
+                onClick={handleLogIn}
               >
                 Log In
               </Button>
               <Button
                 variant="outlined"
                 className="border-main border-4 rounded-md text-white text-3xl py-4 px-8 hover:bg-main hover:border-main hover:border-4"
+                onClick={handleSignUp}
               >
                 Sign Up
               </Button>
