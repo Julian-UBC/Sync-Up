@@ -1,71 +1,30 @@
 import {
-    signInWithGooglePopUp,
-    createUserDocumentFromAuth,
-    signInWithFirebase
+    signUpWithFirebase
 } from "../../utils/firebase";
 import { Box, Container, Avatar, Typography, FormControlLabel, Checkbox, TextField, Button, CssBaseline, Grid, Link } from '@mui/material';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LockOutlined } from "@mui/icons-material"
-import GoogleButton from "react-google-button";
 import { useState } from "react";
 
 const theme = createTheme();
 
-const SignIn = () => {
-    // const [user, setUser] = useState('')
+const SignUp = () => {
+    console.log("Sign UP!")
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [emailError, setEmailError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
     const [hasAccount, setHasAccount] = useState(false)
-    const [forgotpassword, setForgotpassword] = useState(false)
 
-    const clearInputs = () => {
-        setEmail('')
-        setPassword('')
-    }
-    const clearErrors = () => {
-        setEmailError('')
-        setPasswordError('')
-    }
-
-    const handleSignIn = (event) => {
+    const handleSignUp = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
         const password = data.get("password")
-        clearErrors()
-        signInWithFirebase(email, password)
-            .then(() => { setLoading(true) })
+        signUpWithFirebase(email, password)
+            .then(() => { console.log("Sign Up success") })
             .catch(err => {
-                switch (err.code) {
-                    case "auth/invalid-email":
-                        setEmailError(err.message)
-                        break
-                    case "auth/user/disabled":
-                    case "auth/user-not-found":
-                        setEmailError('Email does not exist')
-                        break
-                    case "auth/wrong-password":
-                        setPasswordError('Incorrect Password')
-                        break
-                    default:
-                }
+                console.log("signUpWithFirebase err: ", err)
             })
-    }
-
-    const loginWithGoogle = async () => {
-        console.log("Sign in with google popup")
-        const {user} = await signInWithGooglePopUp()
-        
-        try {
-            await createUserDocumentFromAuth(user);
-        } catch (err) {
-            console.log("loginWithGoogle err: ", err)
-        }
-
     }
 
     return (
@@ -84,14 +43,24 @@ const SignIn = () => {
                         <LockOutlined />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Sign Up
                     </Typography>
                     <Box
                         component="form"
-                        onSubmit={handleSignIn}
+                        onSubmit={handleSignUp}
                         noValidate
                         sx={{ mt: 1 }}
                     >
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="name"
+                            label="Full Name"
+                            name="name"
+                            autoComplete="full-name"
+                            autoFocus
+                        />
                         <TextField
                             margin="normal"
                             required
@@ -124,7 +93,6 @@ const SignIn = () => {
                         >
                             Sign In
                         </Button>
-                        <GoogleButton onClick={loginWithGoogle} className="w-full" />
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
@@ -144,5 +112,5 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default SignUp;
 

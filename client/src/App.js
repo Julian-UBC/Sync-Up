@@ -1,12 +1,11 @@
 import { Dashboard } from "./pages/Dashboard";
-import LoginPage from "./pages/LoginPage";
-
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
