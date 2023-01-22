@@ -30,7 +30,7 @@ function App() {
           />
         </Routes>
       ) : (
-        <Sidebar>
+        <Sidebar setIsLogin={setIsLogin}>
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="schedule" element={<Schedule />} />

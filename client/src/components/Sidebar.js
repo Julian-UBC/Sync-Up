@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import {
   HomeOutlined,
@@ -31,7 +32,7 @@ let useClickInside = (handler) => {
   return domNode;
 };
 
-export const Sidebar = ({ children }) => {
+export const Sidebar = ({ children, setIsLogin }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [page, setPage] = useState(0);
 
@@ -43,6 +44,7 @@ export const Sidebar = ({ children }) => {
     },
     { path: "schedule", title: "Schedule", icon: <CalendarMonthOutlined /> },
     { path: "meeting", title: "Meeting", icon: <GroupsOutlined /> },
+    { path: "/", title: "Sign Out", icon: <LogoutIcon />},
   ];
 
   let domNode = useClickInside(() => {
@@ -62,6 +64,9 @@ export const Sidebar = ({ children }) => {
   const handleClick = (idx) => {
     console.log("click", idx);
     setPage(idx);
+    if (idx === 3) {
+      setIsLogin(false)
+    }
   };
 
   return (
