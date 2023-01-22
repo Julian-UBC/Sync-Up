@@ -1,0 +1,11 @@
+.background-image {
+  background-image: url("../../assets/students.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(30%);
+}
+
+.shadow-text {
+  text-shadow: 5px 5px 5px #30D5C8;
+}

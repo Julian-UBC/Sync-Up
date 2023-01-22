@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -10,21 +12,25 @@ import { Sidebar } from "./components/Sidebar";
 import { Schedule } from "./pages/Schedule";
 import { Meeting } from "./pages/Meeting";
 import { Settings } from "./pages/Settings";
-import { useState } from "react";
-import { Landing } from "./pages/Landing";
+import { LandingPage } from "./pages/LandingPage";
 import { ProfileSettings } from "./pages/ProfileSettings";
 
-function App () {
-  const [isLogin, setIsLogin] = useState(false)
+function App() {
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <Router>
-      {!isLogin ?
+      {!isLogin ? (
         <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="login" element={<Login setIsLogin={setIsLogin}/>} />
+          <Route exact path="/" element={<LandingPage />} />
+          <Route
+            exact
+            path="login"
+            element={<Login setIsLogin={setIsLogin} />}
+          />
         </Routes>
-        : <Sidebar>
+      ) : (
+        <Sidebar>
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="schedule" element={<Schedule />} />
@@ -34,7 +40,7 @@ function App () {
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         </Sidebar>
-      }
+      )}
     </Router>
   );
 }
