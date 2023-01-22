@@ -4,24 +4,27 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-
-import "./App.css";
-
+import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
-import { WebcamPage } from "./pages/webcam/WebcamPage";
 import { Sidebar } from "./components/Sidebar";
 import { Schedule } from "./pages/Schedule";
 import { Meeting } from "./pages/Meeting";
 import { Settings } from "./pages/Settings";
+import { useState } from "react";
+import { Landing } from "./pages/Landing";
 import { ProfileSettings } from "./pages/ProfileSettings";
 
-import "./App.css";
+function App () {
+  const [isLogin, setIsLogin] = useState(false)
 
-function App() {
   return (
-    <div className="App">
-      <Router>
-        <Sidebar>
+    <Router>
+      {!isLogin ?
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route exact path="login" element={<Login setIsLogin={setIsLogin}/>} />
+        </Routes>
+        : <Sidebar>
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="schedule" element={<Schedule />} />
@@ -31,8 +34,8 @@ function App() {
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         </Sidebar>
-      </Router>
-    </div>
+      }
+    </Router>
   );
 }
 

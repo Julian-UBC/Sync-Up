@@ -87,10 +87,7 @@ export const Sidebar = ({ children }) => {
                 key={index}
                 onClick={() => handleClick(index)}
                 className={`${isOpen ? 'translate-x-0' : 'translate-x-[185px]'} ease-in-out transition-transform duration-[.4s] flex rounded-md p-2 cursor-pointer text-white hover:bg-white hover:text-secondary text-md items-center gap-x-4 
-              ${item.gap ? 'mt-9' : 'mt-2'} ${
-                  index === 0 && 'bg-light-white'
-                } `}
-                activeClassName="active"
+              ${item.gap ? 'mt-9' : 'mt-2'} ${index === 0 && 'bg-light-white'} ${(navData) => (navData.isActive ? "active-style" : 'none')}`}
               >
                 {item.icon}
                 <span
