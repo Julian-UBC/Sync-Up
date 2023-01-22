@@ -75,7 +75,7 @@ export const Sidebar = ({ children }) => {
       >
         <Link to="/" className={`${isOpen ? 'translate-x-0' : 'translate-x-[185px]'} ease-in-out transition-transform duration-[.4s] flex gap-x-4 items-center p-2 text-2xl`}>
           <MenuBookOutlined className="" />
-          <h1 className={`${!isOpen ? 'scale-x-0 opacity-0' : 'scale-x-100 opcaity-100'} ease-in-out transition origin-left duration-[.3s] font-medium`}>
+          <h1 className={`${!isOpen ? 'scale-x-0 opacity-0' : 'scale-x-100 opcaity-100'} ease-in-out transition origin-left duration-[.4s] font-medium`}>
             Sync Up
           </h1>
         </Link>
@@ -117,7 +117,7 @@ export const Sidebar = ({ children }) => {
           </div>
         </NavLink>
       </div>
-      <main className={`${isOpen ? 'pl-[265px]' : 'pl-20'} w-full bg-[#e9f1f1] min-h-[100vh]`}>{children}</main>
+      <main className={`${isOpen ? 'pl-[265px]' : 'pl-20'} transition-[padding] ease-in-out duration-[.4s] w-full bg-[#e9f1f1] min-h-[100vh]`}>{children}</main>
     </div>
   );
 };
