@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Webcam from 'react-webcam';
-import { Button } from '../form/Button';
+import React, { useState } from "react";
+import Webcam from "react-webcam";
+import { Button } from "../form/Button";
 
-import MicIcon from '@mui/icons-material/Mic';
-import MicOffIcon from '@mui/icons-material/MicOff';
-import VideocamIcon from '@mui/icons-material/Videocam';
-import VideocamOffIcon from '@mui/icons-material/VideocamOff';
-import CallEndIcon from '@mui/icons-material/CallEnd';
-import PersonIcon from '@mui/icons-material/Person';
+import MicIcon from "@mui/icons-material/Mic";
+import MicOffIcon from "@mui/icons-material/MicOff";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import VideocamOffIcon from "@mui/icons-material/VideocamOff";
+import CallEndIcon from "@mui/icons-material/CallEnd";
+import PersonIcon from "@mui/icons-material/Person";
 
 const BasicControlButton = ({ isOn, onToggle, children }) => {
   return (
     <button
       className={`w-12 h-12 rounded-full ${
-        isOn ? 'backdrop-blur-xl bg-white/20' : 'bg-white'
+        isOn ? "backdrop-blur-xl bg-white/20" : "bg-white"
       }`}
       onClick={onToggle}
     >
@@ -31,15 +31,15 @@ export const WebcamComponent = () => {
       <Webcam
         audio={onMic}
         className={`${
-          onCam ? 'block' : 'hidden'
+          onCam ? "block" : "hidden"
         } w-full h-[calc(100vh-129px)] object-cover rounded-2xl`}
       />
       <div
         className={`${
-          onCam ? 'hidden' : 'block'
+          onCam ? "hidden" : "block"
         } w-full h-[calc(100vh-129px)] bg-black rounded-2xl flex justify-center items-center`}
       >
-        <PersonIcon sx={{ color: 'rgb(209 213 219)', fontSize: '100px' }} />
+        <PersonIcon sx={{ color: "rgb(209 213 219)", fontSize: "100px" }} />
       </div>
 
       {/* Camera Options */}
@@ -51,12 +51,12 @@ export const WebcamComponent = () => {
             setOnMic((prevState) => !prevState);
           }}
         >
-          {onMic ? <MicIcon sx={{ color: 'white' }} /> : <MicOffIcon />}
+          {onMic ? <MicIcon sx={{ color: "white" }} /> : <MicOffIcon />}
         </BasicControlButton>
 
         {/* End Button */}
         <Button className="w-16 h-16 rounded-[1.7rem]" danger>
-          <CallEndIcon sx={{ color: 'white' }} />
+          <CallEndIcon sx={{ color: "white" }} />
         </Button>
 
         {/* Video */}
@@ -67,7 +67,7 @@ export const WebcamComponent = () => {
           }}
         >
           {onCam ? (
-            <VideocamIcon sx={{ color: 'white' }} />
+            <VideocamIcon sx={{ color: "white" }} />
           ) : (
             <VideocamOffIcon />
           )}
