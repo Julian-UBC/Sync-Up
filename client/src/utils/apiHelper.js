@@ -34,6 +34,7 @@ const getCurrentUser = () => {
     });
   } 
   return null
+  
 }
 
 export { addUser, getCurrentUser }
