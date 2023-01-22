@@ -26,7 +26,7 @@ provider.setCustomParameters({
 
 const auth = getAuth();
 
-export const signInWithGooglePopUp = async () => {
+export const signInWithGooglePopUp = (setIsLogin, navigate) => {
   signInWithPopup(auth, provider)
     .then(async () => {
       console.log("Sign In with Google Pop Up success!")
@@ -35,31 +35,40 @@ export const signInWithGooglePopUp = async () => {
       if (!res.data) {
         addUser(user.uid, user.email)
       }
+      setIsLogin(true)
+      navigate("/")
     })
     .catch(err => {
       console.log("signInWithGooglePopUp err: ", err)
+      setIsLogin(false)
     });
 }
 
-export const signInWithFirebase = async (email, password) => {
+export const signInWithFirebase = (email, password, setIsLogin, navigate) => {
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       console.log("Sign In success!")
+      setIsLogin(true)
+      navigate("/")
     })
     .catch(err => {
       console.log("signInWithFirebase err: ", err)
+      setIsLogin(false)
     });
 }
 
-export const signUpWithFirebase = async (email, password) => {
+export const signUpWithFirebase = (email, password, setIsLogin, navigate) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
       console.log("Sign Up success!")
       signInWithFirebase(email, password);
       const user = auth.currentUser
       addUser(user.uid, user.email)
+      setIsLogin(true)
+      navigate("/")
     })
     .catch(err => {
       console.log("signUpWithFirebase err: ", err)
+      setIsLogin(false)
     })
 };
