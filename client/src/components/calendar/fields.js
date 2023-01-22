@@ -1,40 +1,27 @@
 export const FIELDS = [
   {
     name: "user_id",
-    type: "checkbox",
+    type: "select",
     // Should provide options with type:"select"
     options: [
-      { id: 1, text: "John", value: 1 },
-      { id: 2, text: "Mark", value: 2 },
+      { id: 1, text: "Christopher", value: 1 },
+      { id: 2, text: "Jonathan", value: 2 },
+      { id: 3, text: "Julian", value: 3 },
     ],
-    config: {
-      label: "User",
-      required: true,
-      errMsg: "Please Select User",
-    },
+    config: { label: "Add Participant" },
   },
   {
     name: "description",
     type: "input",
-    default: "",
     config: { label: "Details", multiline: true, rows: 4 },
-  },
-  {
-    name: "participant",
-    type: "input",
-    default: "",
-    config: {
-      label: "Add Participant",
-    },
   },
   {
     name: "location",
     type: "input",
-    default: "",
     config: {
       label: "Location",
       required: true,
-      errMsg: "Please Select Location",
+      errMsg: "Please enter the location",
     },
   },
 ];
