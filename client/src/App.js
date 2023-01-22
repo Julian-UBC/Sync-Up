@@ -6,12 +6,14 @@ import {
 } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
+import { WebcamPage } from "./pages/webcam/WebcamPage";
 import { Sidebar } from "./components/Sidebar";
 import { Schedule } from "./pages/Schedule";
 import { Meeting } from "./pages/Meeting";
 import { Settings } from "./pages/Settings";
 import { useState } from "react";
 import { Landing } from "./pages/Landing";
+import { ProfileSettings } from "./pages/ProfileSettings";
 
 function App () {
   const [isLogin, setIsLogin] = useState(false)
@@ -29,6 +31,7 @@ function App () {
             <Route exact path="schedule" element={<Schedule />} />
             <Route exact path="meeting" element={<Meeting />} />
             <Route exact path="settings" element={<Settings />} />
+            <Route exact path="profile" element={<ProfileSettings />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         </Sidebar>
