@@ -1,4 +1,3 @@
-import { Dashboard } from "./pages/Dashboard";
 import {
   BrowserRouter as Router,
   Route,

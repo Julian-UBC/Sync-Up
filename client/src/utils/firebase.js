@@ -1,6 +1,7 @@
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { addUser } from "./apiHelper";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -27,8 +28,13 @@ const auth = getAuth();
 
 export const signInWithGooglePopUp = () => {
   signInWithPopup(auth, provider)
-    .then(() => {
+    .then(async () => {
       console.log("Sign In with Google Pop Up success!")
+      const user = auth.currentUser
+      const res = await axios.get(`http://localhost:8000/api/user/${user.email}`);
+      if (!res.data) {
+        addUser(user.uid, user.email)
+      }
     })
     .catch(err => {
       console.log("signInWithGooglePopUp err: ", err)
@@ -47,28 +53,11 @@ export const signInWithFirebase = (email, password) => {
 
 export const signUpWithFirebase = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then(async () => {
+    .then(() => {
       console.log("Sign Up success!")
       signInWithFirebase(email, password);
       const user = auth.currentUser
-      axios({
-        method: 'PUT',
-        url: "http://localhost:8000/api/user",
-        timeout: 3000,
-        data: {
-          uniqueId: user.uid,
-          email: user.email,
-        },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          console.log("Put user res: ", res)
-        })
-        .catch(err => {
-          console.log("Put User failed: ", err)
-        });
+      addUser(user.uid, user.email)
     })
     .catch(err => {
       console.log("signUpWithFirebase err: ", err)
