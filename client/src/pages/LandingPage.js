@@ -4,7 +4,7 @@ import { LandingImage } from "../components/landing/LandingImage";
 
 export const LandingPage = () => {
   return (
-    <div className="bg-gray-200 min-h-screen flex flex-col items-center">
+    <div className="">
       <LandingImage />
     </div>
   );
