@@ -6,8 +6,6 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { Dashboard } from "./main/Dashboard";
-import { WebcamPage } from "./pages/webcam/WebcamPage";
 
 import "./App.css";
 
@@ -26,7 +24,6 @@ function App() {
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="schedule" element={<Schedule />} />
             <Route exact path="meeting" element={<Meeting />} />
-            <Route exact path="webcam" element={<WebcamPage />} />
             <Route exact path="settings" element={<Settings />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
