@@ -61,7 +61,7 @@ export const Sidebar = ({ children }) => {
       <div
         className={` ${
           isOpen ? "w-72" : "w-20 "
-        } bg-primary text-white h-screen p-5 pt-8 relative duration-300`}
+        } bg-primary text-white h-auto p-5 pt-8 relative duration-300`}
         ref={domNode}
         onMouseEnter={handleMouseEnterSidebar}
       >
