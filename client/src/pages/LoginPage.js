@@ -107,26 +107,30 @@ const LoginPage = () => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{ mt: 1.5, height: "50px"}}
                         >
                             {signUp ? "Sign Up" : "Sign In"}
                         </Button>
-                        {signUp ? null : <GoogleButton onClick={loginWithGoogle} className="w-full" />}
-                        <Grid container>
-                            <Grid item xs>
-                                {signUp ? null :
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                }
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" onClick={() => setSignUp(signUp ? false : true)} variant="body2">
-                                    {signUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
+                        {signUp ? null : <>
+                        <Box className="flex justify-center my-1">OR</Box>
+                        <GoogleButton onClick={loginWithGoogle} style={{width: "100%"}} />
+                        </>
+                            }
+                                <Grid container className="mt-3">
+                                    <Grid item xs>
+                                        {signUp ? null :
+                                            <Link href="#" variant="body2">
+                                                Forgot password?
+                                            </Link>
+                                        }
+                                    </Grid>
+                                    <Grid item>
+                                        <Link href="#" onClick={() => setSignUp(signUp ? false : true)} variant="body2">
+                                            {signUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+                            </Box>
                 </Box>
             </Container>
         </ThemeProvider>
