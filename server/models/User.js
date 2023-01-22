@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
         participants: [{ type: String }]
     }], 
     friendlist: [{ type: mongoose.Types.ObjectId, ref: "User" }],
-    points: { type: BigInt64Array}
+    points: { type: Number}
 })
 
 export default mongoose.model('User', userSchema)

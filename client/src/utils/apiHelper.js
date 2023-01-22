@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAuth } from "firebase/auth";
 
 const addUser = (uid, email) => {
   axios({
@@ -21,5 +22,19 @@ const addUser = (uid, email) => {
     });
 }
 
-export { addUser }
+const getCurrentUser = () => {
+  const user = getAuth().currentUser;
+  if (user) {
+    axios.get(`http://localhost:8000/api/user/${user.email}`)
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => {
+      console.log("getCurrentUser err: ", err)
+    });
+  } 
+  return null
+}
+
+export { addUser, getCurrentUser }
 

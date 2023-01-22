@@ -26,7 +26,7 @@ provider.setCustomParameters({
 
 const auth = getAuth();
 
-export const signInWithGooglePopUp = () => {
+export const signInWithGooglePopUp = async () => {
   signInWithPopup(auth, provider)
     .then(async () => {
       console.log("Sign In with Google Pop Up success!")
@@ -41,7 +41,7 @@ export const signInWithGooglePopUp = () => {
     });
 }
 
-export const signInWithFirebase = (email, password) => {
+export const signInWithFirebase = async (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       console.log("Sign In success!")
@@ -51,7 +51,7 @@ export const signInWithFirebase = (email, password) => {
     });
 }
 
-export const signUpWithFirebase = (email, password) => {
+export const signUpWithFirebase = async (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
       console.log("Sign Up success!")
