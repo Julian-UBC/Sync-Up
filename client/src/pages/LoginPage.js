@@ -1,34 +1,32 @@
 import {
     signInWithGooglePopUp,
-    createUserDocumentFromAuth,
     signInWithFirebase,
-    signUpWithFirebase
+    signUpWithFirebase,
 } from "../utils/firebase";
 import { Box, Container, Avatar, Typography, FormControlLabel, Checkbox, TextField, Button, CssBaseline, Grid, Link } from '@mui/material';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LockOutlined } from "@mui/icons-material"
 import GoogleButton from "react-google-button";
 import { useState } from "react";
+import axios from "axios"
 
 const theme = createTheme();
 
 const LoginPage = () => {
-
+    const [user, setUser] = useState(null)
     const [signUp, setSignUp] = useState(false)
 
-    const handleSignIn = (event) => {
+    const handleSignIn = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
         const password = data.get("password")
         signInWithFirebase(email, password)
-            .then(() => { console.log("signInWithFirebase success") })
-            .catch(err => {
-                console.log("signInWithFirebase err: ", err)
-            })
+        const res = await axios.get(`http://localhost:8000/api/user/${email}`);
+        setUser(res.data)
     }
 
-    const handleSignUp = (event) => {
+    const handleSignUp = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get("email")
@@ -37,14 +35,11 @@ const LoginPage = () => {
     }
 
     const loginWithGoogle = async () => {
-        console.log("Sign in with google popup")
-        const { user } = await signInWithGooglePopUp()
+        const { user } = await signInWithGooglePopUp();
 
-        try {
-            await createUserDocumentFromAuth(user);
-        } catch (err) {
-            console.log("loginWithGoogle err: ", err)
-        }
+        const res = await axios.get(`http://localhost:8000/api/user/${user.email}`);
+        setUser(res.data)
+
     }
 
     return (

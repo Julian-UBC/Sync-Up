@@ -1,3 +1,4 @@
+import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -23,48 +24,54 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-// firestore
-export const db = getFirestore();
+const auth = getAuth();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
-  console.log("userAuth: ", userAuth)
-  const userDocRef = doc(db, "users", userAuth.uid);
+export const signInWithGooglePopUp = () => {
+  signInWithPopup(auth, provider)
+    .then(() => {
+      console.log("Sign In with Google Pop Up success!")
+    })
+    .catch(err => {
+      console.log("signInWithGooglePopUp err: ", err)
+    });
+}
 
-  const userSnapshot = await getDoc(userDocRef);
-  // check if the data exists in the database
-  console.log(userSnapshot.exists());
-
-  if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const createdAt = new Date();
-
-    try {
-      await setDoc(userDocRef, {
-        createdAt,
-        displayName,
-        email,
-      });
-    } catch (error) {
-      console.log("error creating the user", error.message);
-    }
-  }
-
-  return userDocRef;
-};
-
-export const auth = getAuth();
-
-export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
-
-export const signInWithFirebase = (email, password) => signInWithEmailAndPassword(auth, email, password)
+export const signInWithFirebase = (email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      console.log("Sign In success!")
+    })
+    .catch(err => {
+      console.log("signInWithFirebase err: ", err)
+    });
+}
 
 export const signUpWithFirebase = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
+    .then(async () => {
+      console.log("Sign Up success!")
       signInWithFirebase(email, password);
-      console.log("Sign Up success")
+      const user = auth.currentUser
+      axios({
+        method: 'PUT',
+        url: "http://localhost:8000/api/user",
+        timeout: 3000,
+        data: {
+          uniqueId: user.uid,
+          email: user.email,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          console.log("Put user res: ", res)
+        })
+        .catch(err => {
+          console.log("Put User failed: ", err)
+        });
     })
     .catch(err => {
       console.log("signUpWithFirebase err: ", err)
-  })
+    })
 };
