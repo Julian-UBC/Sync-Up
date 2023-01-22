@@ -6,7 +6,7 @@ import "./Calendar.css";
 
 export const MiniCalendar = () => {
   return (
-    <div className="w-1/3 h-[50vh] overflow-scroll">
+    <div className="w-full h-[calc(100vh-434px)] overflow-scroll">
       <Scheduler
         events={EVENTS}
         fields={FIELDS}
